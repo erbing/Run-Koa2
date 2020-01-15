@@ -1,0 +1,23 @@
+{
+  "name": "run-koa2",
+  "version": "1.0.0",
+  "description": "> 重新认识 Koa2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erbing/Run-Koa2.git"
+  },
+  "author": "zigzag",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erbing/Run-Koa2/issues"
+  },
+  "homepage": "https://github.com/erbing/Run-Koa2#readme",
+  "dependencies": {
+    "koa": "^2.11.0"
+  }
+}
