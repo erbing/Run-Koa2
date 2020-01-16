@@ -1,28 +1,11 @@
 const Koa = require('koa');
 const fs = require('fs');
 
-// middleware 中间件、或者叫做组件
-const logger = require('./middleware/logger-async');
-
 const app = new Koa();
-
-app.use(logger());
-// app.use(async (ctx, next) => {
-//     await next();
-//     const rt = ctx.response.get('X-Response-Time');
-//     console.log(`${ctx.method} ${ctx.url} - ${rt}`);
-// });
-
-// app.use(async (ctx, next) => {
-//     const start = Date.now();
-//     await next();
-//     const ms = Date.now() - start;
-//     ctx.set('X-Response-Time', `${ms}ms`);
-// });
 
 function render(page) {
     return new Promise((resolve, reject) => {
-        let viewUrl = `./view/${page}`;
+        let viewUrl = `view/${page}`;
         fs.readFile(viewUrl, 'utf8', (err, data) => {
             if (err) {
                 reject(err);
@@ -54,13 +37,3 @@ async function route(url) {
     let html = render(view);
     return html;
 }
-
-app.use(async ctx => {
-    let url = ctx.request.url;
-    let html = await route(url);
-    ctx.body = html;
-});
-
-app.listen(2000);
-
-console.log('[demo] start-quick is starting at port 2000');
