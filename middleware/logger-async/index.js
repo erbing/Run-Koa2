@@ -6,8 +6,9 @@ function log(ctx) {
 
 module.exports = function() {
     return async function(ctx, next) {
-        console.log(new Date().getTime());
+        debugger;
+        // console.log(new Date().getTime());
         log(ctx);
-        next();
+        await next();
     };
 };
