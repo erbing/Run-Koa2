@@ -58,7 +58,26 @@ async function route(url) {
 app.use(async ctx => {
     let url = ctx.request.url;
     let html = await route(url);
-    ctx.body = html;
+
+    // 从上下文对 request 对象中获取
+    let request = ctx.request;
+    let req_query = request.query;
+    let req_queryString = request.querystring;
+
+    // 从 上下文中直接获取
+    let ctx_query = ctx.query;
+    let ctx_queryString = ctx.querystring;
+
+    ctx.body = {
+        ctx,
+        request,
+        url,
+        req_query,
+        req_queryString,
+        ctx_query,
+        ctx_queryString,
+        html
+    };
 });
 
 app.listen(2000);
