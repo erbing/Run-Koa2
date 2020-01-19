@@ -6,10 +6,52 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>INDEX Page</title>
     </head>
+    <style>
+        .form {
+            width: 500px;
+            height: 600px;
+            background: #ccc;
+        }
+        .input {
+            width: 200px;
+            height: 100px;
+            line-height: 100px;
+        }
+
+        .btn {
+            width: 100px;
+            height: 50px;
+            background: green;
+        }
+    </style>
     <body>
         this is index page for koa2
+
+        <h1>koa2 request post demo</h1>
+        <form method="POST" action="/">
+            <p>userName</p>
+            <input name="userName" /><br />
+            <p>nickName</p>
+            <input name="nickName" /><br />
+            <p>email</p>
+            <input name="email" /><br />
+            <button type="submit">submit</button>
+        </form>
+
         <a href="http://127.0.0.1:2000/index">Index</a>
         <a href="http://127.0.0.1:2000/404">404</a>
         <a href="http://127.0.0.1:2000/login">Login</a>
     </body>
+
+    <!-- <script>
+        var dominput = document.getElementById('input');
+        var dombtn = document.getElementById('btn');
+        dombtn.addEventListener(
+            'click',
+            function(e) {
+                var val = dominput.value;
+            },
+            false
+        );
+    </script> -->
 </html>

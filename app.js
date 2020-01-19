@@ -68,16 +68,13 @@ app.use(async ctx => {
     let ctx_query = ctx.query;
     let ctx_queryString = ctx.querystring;
 
-    ctx.body = {
-        ctx,
-        request,
-        url,
-        req_query,
-        req_queryString,
-        ctx_query,
-        ctx_queryString,
-        html
-    };
+    if (ctx.method === 'GET') {
+        ctx.body = html;
+    } else if (ctx.url === '/' && ctx.method === 'POST') {
+        ctx.body = html + `<script> alert('提交成功！') </script>`;
+    } else {
+        ctx.body = '<h1>404！！！ o(╯□╰)o</h1>';
+    }
 });
 
 app.listen(2000);
