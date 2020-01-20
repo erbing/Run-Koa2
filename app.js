@@ -55,6 +55,33 @@ async function route(url) {
     return html;
 }
 
+function parsePostData(ctx) {
+    return new Promise((resolve, reject) => {
+        try {
+            let postdata = '';
+            ctx.req.addListener('data', data => {
+                postdata += data;
+            });
+            ctx.req.addListener('end', function() {
+                let parseData = parseQueryStr(postdata);
+                resolve(parseData);
+            });
+        } catch (error) {}
+    });
+}
+
+// 将POST请求参数字符串解析成JSON
+function parseQueryStr(queryStr) {
+    let queryData = {};
+    let queryStrList = queryStr.split('&');
+    console.log(queryStrList);
+    for (let [index, queryStr] of queryStrList.entries()) {
+        let itemList = queryStr.split('=');
+        queryData[itemList[0]] = decodeURIComponent(itemList[1]);
+    }
+    return queryData;
+}
+
 app.use(async ctx => {
     let url = ctx.request.url;
     let html = await route(url);
@@ -71,7 +98,8 @@ app.use(async ctx => {
     if (ctx.method === 'GET') {
         ctx.body = html;
     } else if (ctx.url === '/' && ctx.method === 'POST') {
-        ctx.body = html + `<script> alert('提交成功！') </script>`;
+        let postData = await parsePostData(ctx);
+        ctx.body = postData;
     } else {
         ctx.body = '<h1>404！！！ o(╯□╰)o</h1>';
     }
