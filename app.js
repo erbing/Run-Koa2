@@ -1,12 +1,19 @@
 const Koa = require('koa');
 const fs = require('fs');
+const path = require('path');
 
 // middleware 中间件、或者叫做组件
 const logger = require('./middleware/logger-async');
+const bodyParser = require('koa-bodyparser');
+const static = require('koa-static');
 
 const app = new Koa();
 
+const staticPath = './static';
+
 app.use(logger());
+app.use(bodyParser());
+
 // app.use(async (ctx, next) => {
 //     await next();
 //     const rt = ctx.response.get('X-Response-Time');
@@ -82,6 +89,8 @@ function parseQueryStr(queryStr) {
     return queryData;
 }
 
+app.use(static(path.join(__dirname, staticPath)));
+
 app.use(async ctx => {
     let url = ctx.request.url;
     let html = await route(url);
@@ -98,13 +107,18 @@ app.use(async ctx => {
     if (ctx.method === 'GET') {
         ctx.body = html;
     } else if (ctx.url === '/' && ctx.method === 'POST') {
-        let postData = await parsePostData(ctx);
+        // let postData = await parsePostData(ctx);
+        // ctx.body = postData;
+        // 当POST请求的时候，中间件koa-bodyparser解析POST表单里的数据，并显示出来
+        let postData = ctx.request.body;
         ctx.body = postData;
     } else {
         ctx.body = '<h1>404！！！ o(╯□╰)o</h1>';
     }
 });
 
-app.listen(2000);
+app.listen(2000, () => {
+    console.log('[demo] static-use-middleware is starting at port 2000');
+});
 
 console.log('[demo] start-quick is starting at port 2000');

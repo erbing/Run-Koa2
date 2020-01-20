@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/erbing/Run-Koa2#readme",
   "dependencies": {
-    "koa": "^2.11.0"
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-static": "^5.0.0"
   }
 }
