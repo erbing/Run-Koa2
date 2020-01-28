@@ -92,30 +92,34 @@ function parseQueryStr(queryStr) {
 app.use(static(path.join(__dirname, staticPath)));
 
 app.use(async ctx => {
-    let url = ctx.request.url;
-    let html = await route(url);
-
-    // 从上下文对 request 对象中获取
-    let request = ctx.request;
-    let req_query = request.query;
-    let req_queryString = request.querystring;
-
-    // 从 上下文中直接获取
-    let ctx_query = ctx.query;
-    let ctx_queryString = ctx.querystring;
-
-    if (ctx.method === 'GET') {
-        ctx.body = html;
-    } else if (ctx.url === '/' && ctx.method === 'POST') {
-        // let postData = await parsePostData(ctx);
-        // ctx.body = postData;
-        // 当POST请求的时候，中间件koa-bodyparser解析POST表单里的数据，并显示出来
-        let postData = ctx.request.body;
-        ctx.body = postData;
-    } else {
-        ctx.body = '<h1>404！！！ o(╯□╰)o</h1>';
-    }
+    ctx.body = 'hello world';
 });
+
+// app.use(async ctx => {
+//     let url = ctx.request.url;
+//     let html = await route(url);
+
+//     // 从上下文对 request 对象中获取
+//     let request = ctx.request;
+//     let req_query = request.query;
+//     let req_queryString = request.querystring;
+
+//     // 从 上下文中直接获取
+//     let ctx_query = ctx.query;
+//     let ctx_queryString = ctx.querystring;
+
+//     if (ctx.method === 'GET') {
+//         ctx.body = html;
+//     } else if (ctx.url === '/' && ctx.method === 'POST') {
+//         // let postData = await parsePostData(ctx);
+//         // ctx.body = postData;
+//         // 当POST请求的时候，中间件koa-bodyparser解析POST表单里的数据，并显示出来
+//         let postData = ctx.request.body;
+//         ctx.body = postData;
+//     } else {
+//         ctx.body = '<h1>404！！！ o(╯□╰)o</h1>';
+//     }
+// });
 
 app.listen(2000, () => {
     console.log('[demo] static-use-middleware is starting at port 2000');
