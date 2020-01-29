@@ -10,7 +10,19 @@ const staticPath = './static';
 app.use(static(path.join(__dirname, staticPath)));
 
 app.use(async ctx => {
-    ctx.body = 'hello world';
+    if (ctx.url === '/index') {
+        ctx.cookies.set('cid', 'hello koa2', {
+            domain: '127.0.0.1',
+            path: '/index',
+            maxAge: 10 * 60 * 1000,
+            expires: new Date('2020-01-30'),
+            httpOnly: false,
+            overwrite: false
+        });
+        ctx.body = 'cook is ok';
+    } else {
+        ctx.body = 'hello koa2';
+    }
 });
 
 app.listen(3000, () => {
