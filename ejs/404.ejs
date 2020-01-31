@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title><%= title %></title>
+    </head>
+    <body>
+        not fund this page <br />
+        title = <%= title %> <br />
+        users = <%= users.length %>
+        <ul>
+            <% for(var i=0; i<users.length; i++){ %>
+                <li> 
+                    <h3><span>ID:</span><%= users[i].id %><span>username:</span><%= users[i].username %><span>psw:</span><%= users[i].psw %></h3>
+                </li>
+            <% } %>    
+        </ul>
+    </body>
+</html>
