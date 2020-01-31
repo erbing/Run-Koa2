@@ -11,15 +11,16 @@ app.use(static(path.join(__dirname, staticPath)));
 
 app.use(async ctx => {
     if (ctx.url === '/index') {
-        ctx.cookies.set('cid', 'hello koa2', {
+        ctx.cookies.set('cid', 'hello world', {
             domain: '127.0.0.1',
-            path: '/index',
-            maxAge: 10 * 60 * 1000,
-            expires: new Date('2020-01-30'),
-            httpOnly: false,
-            overwrite: false
+            // 写cookie所在的域名, 需要注意的是如果访问的域名和这里的 domain 不一致的化，是无法成功写入的
+            path: '/index', // 写cookie所在的路径
+            maxAge: 10 * 60 * 1000, // cookie有效时长
+            expires: new Date('2017-02-15'), // cookie失效时间
+            httpOnly: false, // 是否只用于http请求中获取
+            overwrite: false // 是否允许重写
         });
-        ctx.body = 'cook is ok';
+        ctx.body = 'cookies is ok';
     } else {
         ctx.body = 'hello koa2';
     }
