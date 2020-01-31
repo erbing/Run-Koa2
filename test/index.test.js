@@ -16,7 +16,7 @@ describe('开始测试什么中药可以抑制冠状病毒肺炎', () => {
                 // 断言判断结果是否为object类型
                 expect(res.body).to.be.an('object');
                 expect(res.body.success).to.be.an('boolean');
-                expect(res.body.data).to.be.an('number');
+                expect(res.body.data).to.be.an('string');
                 done();
             });
     });
@@ -29,7 +29,7 @@ describe('开始测试什么中药可以抑制冠状病毒肺炎', () => {
                 // 断言判断结果是否为object类型
                 expect(res.body).to.be.an('object');
                 expect(res.body.success).to.be.an('boolean');
-                expect(res.body.data).to.be.an('string');
+                expect(res.body.data).to.be.an('number');
                 done();
             });
     });
