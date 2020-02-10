@@ -6,7 +6,7 @@ function log(ctx) {
 
 module.exports = function() {
     return async function(ctx, next) {
+        next();
         await log(ctx);
-        await next();
     };
 };
