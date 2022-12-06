@@ -21,7 +21,7 @@
         "chai": "^4.2.0",
         "ejs": "^3.0.1",
         "koa": "^2.11.0",
-        "koa-bodyparser": "^3.2.0",
+        "koa-bodyparser": "^4.3.0",
         "koa-mysql-session": "0.0.2",
         "koa-session-minimal": "^3.0.4",
         "koa-static": "^5.0.0",
